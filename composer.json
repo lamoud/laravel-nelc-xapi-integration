@@ -11,14 +11,26 @@
         "laravel/pint": "^1.13"
     },
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Mahmoud Hassan",
+            "email": "betalamoud@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Lamoud\\LaravelNelcXapiIntegration\\": "src/"
         }
     },
-    "authors": [
-        {
-            "name": "Mahmoud Hassan"
+        "scripts": {
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
         }
-    ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
