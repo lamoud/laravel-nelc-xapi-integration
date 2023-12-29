@@ -1,0 +1,25 @@
+{
+    "name": "lamoud/laravel-nelc-xapi-integration",
+    "description": "xAPI Integration with NELC (National Center for e-Learning)",
+    "type": "yes",
+    "require": {
+        "guzzlehttp/guzzle": "^7.8",
+        "php": "^8.1",
+        "nesbot/carbon": "^2.72",
+        "laravel/pint": "^1.13"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.13"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lamoud\\LaravelNelcXapiIntegration\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mahmoud Hassan"
+        }
+    ]
+}
