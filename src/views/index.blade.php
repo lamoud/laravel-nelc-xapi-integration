@@ -52,9 +52,12 @@
         </form>
 
         @if ($message = Session::get('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ son_decode($message) }}
+
+            <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+                <p>"status":{{ $message['status'] }}, "message":{{ $message['message'] }}</p>
+                <p>{!! $message['body'] !!}</p>
             </div>
+
         @endif
 
     </div>
