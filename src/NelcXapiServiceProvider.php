@@ -1,6 +1,6 @@
 <?php
 
-namespace Lamoud\LaravelNelcXapiIntegration\Providers;
+namespace Lamoud\LaravelNelcXapiIntegration;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;

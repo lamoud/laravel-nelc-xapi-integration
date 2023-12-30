@@ -18,12 +18,12 @@ composer require lamoud/laravel-nelc-xapi-integration
         * Package Service Providers...
     */
     // ...
-    Lamoud\LaravelNelcXapiIntegration\Controllers\LamoudNelcXapiController::class,
+    Lamoud\LaravelNelcXapiIntegration\NelcXapiServiceProvider::class,
 ])->toArray(),
 ```
 
 3- 
 
 ```bash
-php artisan vendor:publish --provider="Lamoud\LaravelNelcXapiIntegration\Providers\NelcXapiServiceProvider"
+php artisan vendor:publish --provider="Lamoud\LaravelNelcXapiIntegration\NelcXapiServiceProvider"
 ```
