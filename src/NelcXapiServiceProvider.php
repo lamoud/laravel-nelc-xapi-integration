@@ -38,13 +38,13 @@ class NelcXapiServiceProvider extends ServiceProvider
 
         Blade::directive('NelcXapiScript', function ($expression) {
             $output = "<script src=\"{{asset('lamoud-nelc-xapi/js/lamoud-nelc-xapi.js')}}\"></script>";
-            $output += "<script src=\"{{asset('lamoud-nelc-xapi/bootstrap/js/bootstrap.min.js')}}\"></script>";
+            $output .= "<script src=\"{{asset('lamoud-nelc-xapi/bootstrap/js/bootstrap.min.js')}}\"></script>";
             return $output;
         });
 
         Blade::directive('NelcXapiStyle', function ($expression) {
             $output = "<link href=\"{{asset('lamoud-nelc-xapi/css/lamoud-nelc-xapi.css')}}\" rel=\"stylesheet\" />";
-            $output += "<link href=\"{{asset('lamoud-nelc-xapi/bootstrap/css/bootstrap.min.css')}}\" rel=\"stylesheet\" />";
+            $output .= "<link href=\"{{asset('lamoud-nelc-xapi/bootstrap/css/bootstrap.min.css')}}\" rel=\"stylesheet\" />";
             return $output;
         });
     }

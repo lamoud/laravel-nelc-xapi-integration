@@ -8,4 +8,7 @@ Route::group([
 ], function () {
     Route::get(config('lamoud-nelc-xapi.base_route'), 'LamoudNelcXapiController@getIndex')
         ->name('lamoud-nelc-xapi.base_route');
+
+    Route::post(config('lamoud-nelc-xapi.base_route'), 'LamoudNelcXapiController@postIndex')
+        ->name('lamoud-nelc-xapi.validate_base_route');
 });

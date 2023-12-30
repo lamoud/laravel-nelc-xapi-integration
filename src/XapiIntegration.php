@@ -4,34 +4,51 @@ namespace Lamoud\LaravelNelcXapiIntegration;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Lamoud\LaravelNelcXapiIntegration\Interactions\Registered;
 
 class XapiIntegration
 {
     protected $client;
+    protected $headers;
+    protected $url;
+    protected $key;
+    protected $secret;
 
     public function __construct()
     {
-        $this->client = new Client();
-    }
+        $this->url = config('lamoud-nelc-xapi.endpoint');
+        $this->key = config('lamoud-nelc-xapi.key');
+        $this->secret = config('lamoud-nelc-xapi.secret');
 
-    public function sendXAPIRequest($url, $username, $password, $data = [])
-    {
-        $client = new Client([
-            'auth' => [$username, $password],
+        $this->client =  new Client([
+            'auth' => [$this->key, $this->secret],
         ]);
 
-        $headers = [
+        $this->headers = [
             'Content-Type'  => 'application/json',
             'Access-Control-Allow-Origin'   => '*',
         ];
 
+    }
+
+    public function Registered( $actor, $actorEmail, $courseId, $courseTitle, $courseDesc, $instructor, $instructorEmail)
+    {
+        $instance = new Registered();
+        $data = $instance->Send( $actor, $actorEmail, $courseId, $courseTitle, $courseDesc, $instructor, $instructorEmail);
+
+        return $this->sendXAPIRequest( $data );
+    }
+
+    public function sendXAPIRequest($data = [])
+    {
+
         $options = [
             'json' => $data,
-            'headers' => $headers,
+            'headers' => $this->headers,
         ];
 
         try {
-            $response = $client->post($url, $options);
+            $response = $this->client->post($this->url, $options);
 
             return [
                 'status' => $response->getStatusCode(),
