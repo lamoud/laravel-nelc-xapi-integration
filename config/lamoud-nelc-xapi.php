@@ -4,4 +4,5 @@ return [
     'middleware'      => ['web'],
     'key'    => 'username',
     'secret'    => 'password',
+    'base_route'    => 'nelcxapi/test',
 ];

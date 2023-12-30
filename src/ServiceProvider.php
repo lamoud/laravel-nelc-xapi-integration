@@ -22,7 +22,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         // Load configuration files
 
         $this->publishes([
-            self::CONFIG_PATH => config_path('lamoud-nelc-xapi'),
+            self::CONFIG_PATH => config_path()
         ], 'config');
 
         // Load assets files
@@ -56,5 +56,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         // Register any services, bindings, or other things here
+        $this->mergeConfigFrom(
+            self::CONFIG_PATH . '/lamoud-nelc-xapi.php',
+            'lamoud-nelc-xapi'
+        );
     }
 }
