@@ -1,16 +1,16 @@
 <?php
 
-namespace Lamoud\LaravelNelcXapiIntegration;
+namespace Lamoud\LaravelNelcXapiIntegration\Providers;
+
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 
-class ServiceProvider extends \Illuminate\Support\ServiceProvider
+class NelcXapiServiceProvider extends ServiceProvider
 {
     const CONFIG_PATH = __DIR__ . '/../config';
-    //const MIGRATION_PATH = __DIR__ . '/../migrations';
     const ROUTE_PATH = __DIR__ . '/../routes';
     const VIEW_PATH = __DIR__ . '/views';
     const ASSET_PATH = __DIR__ . '/../assets';
-    //const TRANSLATION_PATH = __DIR__ . '/../translations';
 
     /**
      * Bootstrap services.

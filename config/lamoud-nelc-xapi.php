@@ -1,6 +1,6 @@
 <?php
 return [
-    'endpoint'      => 'admin/filemanager',
+    'endpoint'      => '',
     'middleware'      => ['web'],
     'key'    => 'username',
     'secret'    => 'password',
