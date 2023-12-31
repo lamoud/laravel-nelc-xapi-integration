@@ -4,7 +4,7 @@ namespace Lamoud\LaravelNelcXapiIntegration\Interactions;
 
 use Illuminate\Support\Facades\App;
 
-class Registered
+class Initialized
 {
 
     protected $platform_in_arabic;
@@ -18,6 +18,7 @@ class Registered
         $this->platform_in_english = config('platform_in_english');
         $this->platform = App::getLocale() === 'ar' ? $this->platform_in_arabic : $this->platform_in_english;
         $this->lang = App::getLocale() === 'ar' ? 'ar-SA' : 'en-US';
+
     }
 
     public function Send( $actor, $actorEmail, $courseId, $courseTitle, $courseDesc, $instructor, $instructorEmail ){
@@ -29,8 +30,8 @@ class Registered
                         'objectType' => 'Agent',
                     ),
             'verb' => array(
-                        'id' => 'http://adlnet.gov/expapi/verbs/registered',
-                        'display' => array('en-US' => 'registered') 
+                        'id' => 'http://adlnet.gov/expapi/verbs/initialized',
+                        'display' => array('en-US' => 'initialized') 
                     ),
             'object' => array(
                             'id'=> strval($courseId),

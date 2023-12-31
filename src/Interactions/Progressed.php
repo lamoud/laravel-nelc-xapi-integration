@@ -4,7 +4,7 @@ namespace Lamoud\LaravelNelcXapiIntegration\Interactions;
 
 use Illuminate\Support\Facades\App;
 
-class Registered
+class Progressed
 {
 
     protected $platform_in_arabic;
@@ -20,7 +20,7 @@ class Registered
         $this->lang = App::getLocale() === 'ar' ? 'ar-SA' : 'en-US';
     }
 
-    public function Send( $actor, $actorEmail, $courseId, $courseTitle, $courseDesc, $instructor, $instructorEmail ){
+    public function Send( $actor, $actorEmail, $courseId, $courseTitle, $courseDesc, $instructor, $instructorEmail, $scaled, bool $completion ){
 
         $data = array(
             'actor' => array(
@@ -29,8 +29,8 @@ class Registered
                         'objectType' => 'Agent',
                     ),
             'verb' => array(
-                        'id' => 'http://adlnet.gov/expapi/verbs/registered',
-                        'display' => array('en-US' => 'registered') 
+                        'id' => 'http://adlnet.gov/expapi/verbs/progressed',
+                        'display' => array("en-US" => "progressed") 
                     ),
             'object' => array(
                             'id'=> strval($courseId),
@@ -57,6 +57,12 @@ class Registered
                                 )
                             )
                         ),
+            'result' => array(
+                            "score" => array(
+                                "scaled" =>  $scaled
+                                ),
+                            "completion" => $completion,
+                ),                
             'timestamp' => date('Y-m-d\TH:i:s'.substr((string)microtime(), 1, 4).'\Z')
         );
 

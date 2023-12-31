@@ -4,7 +4,7 @@ namespace Lamoud\LaravelNelcXapiIntegration\Interactions;
 
 use Illuminate\Support\Facades\App;
 
-class Registered
+class CompletedCourse
 {
 
     protected $platform_in_arabic;
@@ -18,6 +18,7 @@ class Registered
         $this->platform_in_english = config('platform_in_english');
         $this->platform = App::getLocale() === 'ar' ? $this->platform_in_arabic : $this->platform_in_english;
         $this->lang = App::getLocale() === 'ar' ? 'ar-SA' : 'en-US';
+
     }
 
     public function Send( $actor, $actorEmail, $courseId, $courseTitle, $courseDesc, $instructor, $instructorEmail ){
@@ -29,18 +30,18 @@ class Registered
                         'objectType' => 'Agent',
                     ),
             'verb' => array(
-                        'id' => 'http://adlnet.gov/expapi/verbs/registered',
-                        'display' => array('en-US' => 'registered') 
+                        'id' => 'http://adlnet.gov/expapi/verbs/completed',
+                        'display' => array("en-US" => "completed") 
                     ),
             'object' => array(
-                            'id'=> strval($courseId),
-                            'definition' => array(
-                                'name' => array(strval($this->lang) => strval($courseTitle)),
-                                'description' => array(strval($this->lang) => strval($courseDesc)),
-                                'type' => 'https://w3id.org/xapi/cmi5/activitytype/course'
-                            ),
-                            'objectType' => 'Activity',
+                        'id'=> strval($courseId),
+                        'definition' => array(
+                            'name' => array(strval($this->lang) => strval($courseTitle)),
+                            'description' => array(strval($this->lang) => strval($courseDesc)),
+                            'type' => 'https://w3id.org/xapi/cmi5/activitytype/course'
                         ),
+                        'objectType' => 'Activity',
+                    ),
             'context' => array(
                             'instructor' => array(
                                 'name' => strval($instructor),
@@ -48,7 +49,7 @@ class Registered
                             ),
                             'platform' => strval($this->platform),
                             'language' => strval($this->lang),
-                            "extensions" => array(
+                            'extensions' => array (
                                 "https://nelc.gov.sa/extensions/platform" => array(
                                     "name" => array(
                                         "ar-SA" => strval($this->platform_in_arabic),
@@ -57,6 +58,7 @@ class Registered
                                 )
                             )
                         ),
+    
             'timestamp' => date('Y-m-d\TH:i:s'.substr((string)microtime(), 1, 4).'\Z')
         );
 
