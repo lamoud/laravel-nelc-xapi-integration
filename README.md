@@ -51,10 +51,48 @@ php artisan vendor:publish --provider="Lamoud\LaravelNelcXapiIntegration\NelcXap
 ```
 
 ## Usage
-Once the package is installed and the ServiceProvider is registered, you can use it in your Laravel project. Here's a simple example:
+Once the package is installed and the ServiceProvider is registered, you can use it in your Laravel project. Here's a simple examples:
 
+## Registered Statement
+Indicates the actor is officially enrolled or inducted in an activity.
 ```php
-// config/app.php
 use Lamoud\LaravelNelcXapiIntegration\XapiIntegration;
+// ...
 
+$xapi = new XapiIntegration();
+$response = $xapi->Registered(
+                    '123456789', // Student National ID
+                    'betalamoud@gmail.com', // Student Email
+                    '123', // Course Id OR url Or slug
+                    'New Course', // Course Title
+                    'New Course description', // Course description
+                    'MR Hassan', // instructor Name
+                    'mrhassan@mail.com',  // instructor Email
+                );
+
+// dd( $response['status'] ); return 200
+// dd( $response['message'] ); return ok
+// dd( $response['body'] ); return UUID
+```
+
+## Initialized Statement
+Indicates the activity provider has determined that the actor successfully started an activity.
+```php
+use Lamoud\LaravelNelcXapiIntegration\XapiIntegration;
+// ...
+
+$xapi = new XapiIntegration();
+$response = $xapi->Initialized(
+    '123456789', // Student National ID
+    'betalamoud@gmail.com', // Student Email
+    '123', // Course Id OR url Or slug
+    'New Course', // Course Title
+    'New Course description', // Course description
+    'MR Hassan', // instructor Name
+    'mrhassan@mail.com',  // instructor Email
+);
+
+// dd( $response['status'] ); return 200
+// dd( $response['message'] ); return ok
+// dd( $response['body'] ); return UUID
 ```
