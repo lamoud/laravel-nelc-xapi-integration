@@ -49,6 +49,27 @@ To publish the configuration files provided by this package, run the following A
 ```bash
 php artisan vendor:publish --provider="Lamoud\LaravelNelcXapiIntegration\NelcXapiServiceProvider"
 ```
+This will deploy `asset` files inside the public folder with the name `lamoud-nelc-xapi` and the file `lamoud-nelc-xapi.php` inside the `config` folder.
+
+## Step 6: Configure Basic Settings
+To start using this package, follow these steps to configure the basic settings and connect with NELC XAPI:
+
+Open the `lamoud-nelc-xapi.php` file inside the `config` folder. Adjust the basic settings according to your requirements. Make sure to set up any necessary `enpoint`, `authentication (key, secret)` details, and other configuration options.
+
+```php
+// config/lamoud-nelc-xapi.php
+return [
+    'endpoint'      => 'https://lrs.nelc.gov.sa/staging-lrs/xapi/statements', // Replace with endpoint.
+    'middleware'      => ['web'], // Middleware to display the demo page, ['web', 'auth', ...]
+    'key'    => 'userName',
+    'secret'    => 'pasword',
+    'platform_in_arabic'    => '', // Platform name in Arabic
+    'platform_in_english'    => '', // Platform name in English
+    'base_route'    => 'nelcxapi/test', // Demo Page Link
+];
+```
+Now, you can go to the demo page and start testing statement submissions using the following link:
+`https://your-site.com/nelcxapi/test` or through the `route('lamoud-nelc-xapi.base_route')`.
 
 ## Usage
 Once the package is installed and the ServiceProvider is registered, you can use it in your Laravel project. Here's a simple examples:
