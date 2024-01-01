@@ -61,14 +61,14 @@ use Lamoud\LaravelNelcXapiIntegration\XapiIntegration;
 
 $xapi = new XapiIntegration();
 $response = $xapi->Registered(
-                    '123456789', // Student National ID
-                    'betalamoud@gmail.com', // Student Email
-                    '123', // Course Id OR url Or slug
-                    'New Course', // Course Title
-                    'New Course description', // Course description
-                    'MR Hassan', // instructor Name
-                    'mrhassan@mail.com',  // instructor Email
-                );
+    '123456789', // Student National ID
+    'betalamoud@gmail.com', // Student Email
+    '123', // Course Id OR url Or slug
+    'New Course', // Course Title
+    'New Course description', // Course description
+    'MR Hassan', // instructor Name
+    'mrhassan@mail.com',  // instructor Email
+);
 
 // dd( $response['status'] ); return 200
 // dd( $response['message'] ); return ok
@@ -90,6 +90,61 @@ $response = $xapi->Initialized(
     'New Course description', // Course description
     'MR Hassan', // instructor Name
     'mrhassan@mail.com',  // instructor Email
+);
+
+// dd( $response['status'] ); return 200
+// dd( $response['message'] ); return ok
+// dd( $response['body'] ); return UUID
+```
+
+## Watched Statement
+Indicates that the actor has watched the object. This verb is typically applicable only when the object represents dynamic, visible content such as a movie, a television show or a public performance. This verb is a more specific form of the verbs experience, play and consume.
+```php
+use Lamoud\LaravelNelcXapiIntegration\XapiIntegration;
+// ...
+
+$xapi = new XapiIntegration();
+$response = $xapi->Watched(
+    '123456789', // Student National ID
+    'betalamoud@gmail.com', // Student Email
+    '/url/to/lesson', // Lesson Or object URL
+    'Lesson title', // Object title
+    'Lesson description',  // Object description
+    true, // The status indicating whether it has been fully watched (boolean).
+    'PT15M', // The duration of the watching session in `ISO 8601` format.
+    '123', // Course Id OR url Or slug
+    'New Course', // Course Title
+    'New Course description', // Course description
+    'MR Hassan', // instructor Name
+    'mrhassan@mail.com',  // instructor Email
+    
+);
+
+// dd( $response['status'] ); return 200
+// dd( $response['message'] ); return ok
+// dd( $response['body'] ); return UUID
+```
+
+## Completed Statement
+Indicates the actor finished or concluded the activity normally.
+
+### Completed (Lesson or class)
+```php
+use Lamoud\LaravelNelcXapiIntegration\XapiIntegration;
+// ...
+
+$xapi = new XapiIntegration();
+$response = $xapi->CompletedLesson(
+    '123456789', // Student National ID
+    'betalamoud@gmail.com', // Student Email
+    '/url/to/lesson', // Lesson URL
+    'Lesson title',
+    'Lesson description',
+    '123', // Course Id OR url Or slug
+    'New Course', // Course Title
+    'New Course description', // Course description
+    'MR Hassan', // instructor Name
+    'mrhassan@mail.com',  // instructor Email                
 );
 
 // dd( $response['status'] ); return 200
